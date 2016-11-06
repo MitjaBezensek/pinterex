@@ -17,4 +17,10 @@ defmodule Pinterex do
     opts = [strategy: :one_for_one, name: Pinterex.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
+  def key do
+    Application.get_env(:pinterest, :key) ||
+    System.get_env("PINTEREST_KEY")
+  end
+
 end
