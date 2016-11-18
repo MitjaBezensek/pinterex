@@ -5,6 +5,7 @@ defmodule Pinterex do
   plug Tesla.Middleware.BaseUrl, "https://api.pinterest.com/v1/"
   plug Tesla.Middleware.Query, [access_token: key]
   plug Tesla.Middleware.JSON
+  plug Tesla.Middleware.DebugLogger
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
