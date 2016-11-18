@@ -15,7 +15,7 @@ defmodule Pinterex.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     [applications: [:logger],
-     mod: {Pinterex, []}]
+     mod: {Pinterex, []}] 
   end
 
   # Dependencies can be Hex packages:
@@ -28,6 +28,8 @@ defmodule Pinterex.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [{:tesla, "~> 0.5.0"},
+     {:poison, ">= 1.0.0"},
+     {:exconstructor, "~> 1.0.2"}]
   end
 end

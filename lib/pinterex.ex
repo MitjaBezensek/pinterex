@@ -1,5 +1,10 @@
 defmodule Pinterex do
   use Application
+  use Tesla
+
+  plug Tesla.Middleware.BaseUrl, "https://api.pinterest.com/v1/"
+  plug Tesla.Middleware.Query, [access_token: key]
+  plug Tesla.Middleware.JSON
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
@@ -23,4 +28,30 @@ defmodule Pinterex do
     System.get_env("PINTEREST_KEY")
   end
 
-end
+  def request2(:get, path) do
+    get(path).body["data"]
+  end
+
+  defdelegate me, to: Pinterex.Api.User
+
+  defdelegate myBoards, to: Pinterex.Api.User
+
+  defdelegate mySuggestedBoards(id), to: Pinterex.Api.User
+
+  defdelegate myLikes, to: Pinterex.Api.User
+
+  defdelegate myPins, to: Pinterex.Api.User
+
+  defdelegate searchMyBoards(query), to: Pinterex.Api.User
+
+  defdelegate searchMyPins(query), to: Pinterex.Api.User
+
+  defdelegate myFollowers, to: Pinterex.Api.User
+
+  defdelegate myFollowingBoards, to: Pinterex.Api.User
+
+  defdelegate myFollowingInterests, to: Pinterex.Api.User
+
+  defdelegate myFollowingUsers, to: Pinterex.Api.User
+
+ end
