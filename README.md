@@ -1,6 +1,6 @@
 # Pinterex
 
-**TODO: Add description**
+Pinterex is a simple api wrapper for the Pinterest API.
 
 ## Installation
 
