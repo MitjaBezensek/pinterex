@@ -55,4 +55,9 @@ defmodule Pinterex do
 
   defdelegate myFollowingUsers, to: Pinterex.Api.User
 
- end
+  defdelegate getPin(id), to: Pinterex.Api.Pin
+
+  defdelegate getBoardPins(board), to: Pinterex.Api.Board
+  
+  defdelegate getBoard(board), to: Pinterex.Api.Board
+end

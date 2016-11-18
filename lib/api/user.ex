@@ -1,78 +1,58 @@
 defmodule Pinterex.Api.User do
-  alias Pinterex.Structs.{User, Board, Pin, Interest}
+  alias Pinterex.Helpers.Helpers
 
   def me do
     Pinterex.request2(:get, "/me/")
-    |> User.new
+    |> Helpers.createUser
   end
 
   def myBoards do
     Pinterex.request2(:get, "/me/boards/")
-    |> createBoards
+    |> Helpers.createBoards
   end
 
   def mySuggestedBoards(id) do
     Pinterex.request2(:get, "/me/boards/suggested/?pin=#{id}")
-    |> createBoards
+    |> Helpers.createBoards
   end
 
   def myLikes do
     Pinterex.request2(:get, "/me/likes/")
-    |> createPins
+    |> Helpers.createPins
   end
 
   def myPins do
     Pinterex.request2(:get, "/me/pins/")
-    |> createPins
+    |> Helpers.createPins
   end
 
   def searchMyBoards(query) do
     Pinterex.request2(:get, "/me/search/boards/?query=#{query}")
-    |> createBoards
+    |> Helpers.createBoards
   end
 
   def searchMyPins(query) do
     Pinterex.request2(:get, "/me/search/pins/?query=#{query}")
-    |> createPins
+    |> Helpers.createPins
   end
 
   def myFollowers do
     Pinterex.request2(:get, "/me/followers/")
-    |> createUsers
+    |> Helpers.createUsers
   end
 
   def myFollowingBoards do
     Pinterex.request2(:get, "/me/following/boards/")
-    |> createBoards
+    |> Helpers.createBoards
   end
 
   def myFollowingInterests do
     Pinterex.request2(:get, "/me/following/interests/")
-    |> createInterests
+    |> Helpers.createInterests
   end
 
   def myFollowingUsers do
     Pinterex.request2(:get, "/me/following/users")
-    |> createUsers
-  end
-
-  def createBoards(boards) do
-    boards
-    |> Enum.map(fn board -> Board.new(board) end)
-  end
-
-  def createPins(pins) do
-    pins
-    |> Enum.map(fn pin -> Pin.new(pin) end)
-  end
-
-  def createUsers(users) do
-    users
-    |> Enum.map(fn user -> User.new(user) end)
-  end
-
-  def createInterests(interests) do
-    interests
-    |> Enum.map(fn interest -> Interest.new(interest) end)
+    |> Helpers.createUsers
   end
 end
