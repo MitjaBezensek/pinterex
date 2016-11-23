@@ -21,31 +21,136 @@ defmodule Pinterex do
   defdelegate execute_request(method, path), to: Pinterex.Api.Base
   defdelegate execute_request(method, path, options), to: Pinterex.Api.Base
 
+  @doc """
+  Used for fetching the data of the authenticated User's profile.
+  https://developers.pinterest.com/docs/api/v1/me
+
+  By default the API returns first and last name, ID and
+  URL of the authenticated User.
+  ## Parameters
+  - options: if we wish to get other fields of the User we pass a list of
+  fields to fetch. For example we can get bio and counts fields by calling
+  me(["bio", "counts"])
+  """
   defdelegate me(options \\ []), to: Pinterex.Api.User
 
+  @doc """
+  Returns a list of the public Boards of the authenticated User.
+  https://developers.pinterest.com/docs/api/v1/boards/
+
+  By default the API returns their URLs, IDs and names.
+  """
   defdelegate myBoards, to: Pinterex.Api.User
 
+  @doc """
+  Returns a list of Boards that Pinterest would suggest to the authenticated User if
+  they were to save the specified Pin.
+  https://developers.pinterest.com/docs/api/v1/boards/suggested/
+
+  By default the API returns the IDs, URLs and names of the Boards.
+
+  ## Parameters
+  - id: the id of the Pin for which you wish to get the suggestions (required)
+  """
   defdelegate mySuggestedBoards(id), to: Pinterex.Api.User
 
+  @doc """
+  Returns a list of Pins that the authenticated User liked.
+  https://developers.pinterest.com/docs/api/v1/me/likes/
+
+  By default the API returns the IDs, URLs, links and descriptions of the Pins.
+  """
   defdelegate myLikes, to: Pinterex.Api.User
 
+  @doc """
+  Returns a list of Pins that the authenticated User pinned.
+  https://developers.pinterest.com/docs/api/v1/me/pins/
+
+  By default the API returns the IDs, URLs, links and descriptions of the User's Pins.
+  """
   defdelegate myPins, to: Pinterex.Api.User
 
+  @doc """
+  Returns a list of the authenticated User's Boards that match the search query.
+  https://developers.pinterest.com/docs/api/v1/me/search/boards/
+
+  By default the API returns IDs, URLs and names of the matched Boards.
+
+  ## Parameters
+  - query: the query string you wish to search for
+  """
   defdelegate searchMyBoards(query), to: Pinterex.Api.User
 
+  @doc """
+  Returns a list of the authenticated User's Pins that match the search query.
+  https://developers.pinterest.com/docs/api/v1/me/search/pins/
+
+  By default the API returns IDs, URLs, links and descriptions of the matched Pins.
+
+  ## Parameters
+  - query: the query string you wish to search for
+  """
   defdelegate searchMyPins(query), to: Pinterex.Api.User
 
+  @doc """
+  Returns the Users that follow the authenticated User
+  https://developers.pinterest.com/docs/api/v1/me/followers/
+
+  By default the API returns the first names, last names, IDs and URLs of the Users.
+  """
   defdelegate myFollowers, to: Pinterex.Api.User
 
+  @doc """
+  Returns a list of Boards that the authenticated User follows.
+  https://developers.pinterest.com/docs/api/v1/me/following/boards/
+
+  By default the API returns the IDs, URLs and names of the Boards.
+  """
   defdelegate myFollowingBoards, to: Pinterex.Api.User
 
+  @doc """
+  Returns a list of Interests that the authenticated User follows.
+  https://developers.pinterest.com/docs/api/v1/me/following/interests/
+
+  By default the API returns the IDs and names of the Interests.
+  """
   defdelegate myFollowingInterests, to: Pinterex.Api.User
 
+  @doc """
+  Returns the Users that the authenticated User follows.
+  https://developers.pinterest.com/docs/api/v1/me/following/users/
+
+  By default the API returns the first names, last names, IDs and URLs of the Users.
+  """
   defdelegate myFollowingUsers, to: Pinterex.Api.User
 
+  @doc """
+  Returns the information of the requested Pin.
+  https://developers.pinterest.com/docs/api/v1/pins/<pin>/
+
+  By default the API returns the ID, URL, link and the description of the Pin.
+
+  ## Parameters
+  - id: the id of the Pin
+  """
   defdelegate getPin(id), to: Pinterex.Api.Pin
 
-  defdelegate getBoardPins(board), to: Pinterex.Api.Board
+  @doc """
+  Returns the Board information.
+  https://developers.pinterest.com/docs/api/v1/boards/<board>/
 
+  By default the API returns the ID, URL and the name of the specified Board
+
+  ## Parameters
+  - board: the id of the Board whose info you wish to get
+  """
   defdelegate getBoard(board), to: Pinterex.Api.Board
+
+  @doc """
+  Returns a list of Pins from the specified Board.
+  https://developers.pinterest.com/docs/api/v1/boards/<board>/pins/
+
+  By default the API returns the IDs, URLs, links and descriptions of the Pins.
+  """
+  defdelegate getBoardPins(board), to: Pinterex.Api.Board
 end
