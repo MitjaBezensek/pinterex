@@ -33,7 +33,16 @@ defmodule Pinterex do
     get(path).body["data"]
   end
 
-  defdelegate me, to: Pinterex.Api.User
+  def request2(:get, path, []) do
+    request2(:get, path)
+  end
+
+  def request2(:get, path, options) do
+    fields = "?fields=" <> Enum.join(options, ",")
+    request2(:get, path <> fields)
+  end
+
+  defdelegate me(options \\ []), to: Pinterex.Api.User
 
   defdelegate myBoards, to: Pinterex.Api.User
 
