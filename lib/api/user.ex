@@ -2,57 +2,57 @@ defmodule Pinterex.Api.User do
   alias Pinterex.Helpers.Helpers
 
   def me(options) do
-    Pinterex.request2(:get, "/me/", options)
+    Pinterex.execute_request(:get, "/me/", options)
     |> Helpers.createUser
   end
 
   def myBoards do
-    Pinterex.request2(:get, "/me/boards/")
+    Pinterex.execute_request(:get, "/me/boards/")
     |> Helpers.createBoards
   end
 
   def mySuggestedBoards(id) do
-    Pinterex.request2(:get, "/me/boards/suggested/?pin=#{id}")
+    Pinterex.execute_request(:get, "/me/boards/suggested/?pin=#{id}")
     |> Helpers.createBoards
   end
 
   def myLikes do
-    Pinterex.request2(:get, "/me/likes/")
+    Pinterex.execute_request(:get, "/me/likes/")
     |> Helpers.createPins
   end
 
   def myPins do
-    Pinterex.request2(:get, "/me/pins/")
+    Pinterex.execute_request(:get, "/me/pins/")
     |> Helpers.createPins
   end
 
   def searchMyBoards(query) do
-    Pinterex.request2(:get, "/me/search/boards/?query=#{query}")
+    Pinterex.execute_request(:get, "/me/search/boards/?query=#{query}")
     |> Helpers.createBoards
   end
 
   def searchMyPins(query) do
-    Pinterex.request2(:get, "/me/search/pins/?query=#{query}")
+    Pinterex.execute_request(:get, "/me/search/pins/?query=#{query}")
     |> Helpers.createPins
   end
 
   def myFollowers do
-    Pinterex.request2(:get, "/me/followers/")
+    Pinterex.execute_request(:get, "/me/followers/")
     |> Helpers.createUsers
   end
 
   def myFollowingBoards do
-    Pinterex.request2(:get, "/me/following/boards/")
+    Pinterex.execute_request(:get, "/me/following/boards/")
     |> Helpers.createBoards
   end
 
   def myFollowingInterests do
-    Pinterex.request2(:get, "/me/following/interests/")
+    Pinterex.execute_request(:get, "/me/following/interests/")
     |> Helpers.createInterests
   end
 
   def myFollowingUsers do
-    Pinterex.request2(:get, "/me/following/users")
+    Pinterex.execute_request(:get, "/me/following/users")
     |> Helpers.createUsers
   end
 end
