@@ -7,6 +7,8 @@ defmodule Pinterex.Mixfile do
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     description: description(),
+     package: package(),
      deps: deps()]
   end
 
@@ -16,6 +18,20 @@ defmodule Pinterex.Mixfile do
   def application do
     [applications: [:logger],
      mod: {Pinterex, []}] 
+  end
+
+  def description do
+    """
+    A simple Elixir wrapper for Pinterest API.
+    """
+  end
+
+  def package do
+    [
+      maintainers: ["Mitja Bezenšek"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/MitjaBezensek/pinterex" }
+    ]
   end
 
   # Dependencies can be Hex packages:
@@ -30,6 +46,7 @@ defmodule Pinterex.Mixfile do
   defp deps do
     [{:tesla, "~> 0.5.0"},
      {:poison, ">= 1.0.0"},
-     {:exconstructor, "~> 1.0.2"}]
+     {:exconstructor, "~> 1.0.2"},
+     {:ex_doc, ">= 0.0.0"}]
   end
 end
