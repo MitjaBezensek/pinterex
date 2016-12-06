@@ -46,6 +46,14 @@ defmodule Pinterex.Api.User do
     |> Helpers.createBoards
   end
 
+  def followBoard(board) do
+    Pinterex.execute_request(:post, "/me/following/boards/", %{board: board})
+  end
+
+  def unfollowBoard(board) do
+    Pinterex.execute_request(:delete, "/me/following/boards/" <> board <> "/")
+  end
+
   def myFollowingInterests do
     Pinterex.execute_request(:get, "/me/following/interests/")
     |> Helpers.createInterests

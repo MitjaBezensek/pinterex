@@ -19,6 +19,7 @@ defmodule Pinterex do
   end
 
   defdelegate execute_request(method, path), to: Pinterex.Api.Base
+
   defdelegate execute_request(method, path, options), to: Pinterex.Api.Base
 
   @doc """
@@ -109,6 +110,26 @@ defmodule Pinterex do
   defdelegate myFollowingBoards, to: Pinterex.Api.User
 
   @doc """
+  Follow the specified Board as the authenticated User.
+  https://developers.pinterest.com/docs/api/v1/me/following/boards/
+
+  ## Parameters
+  - board: the Board to follow. The format of the parameters should be
+  "username/board_name"
+  """
+  defdelegate followBoard(board), to: Pinterex.Api.User
+
+  @doc """
+  Unfollow the specified Board as the authenticated User.
+  https://developers.pinterest.com/docs/api/v1/me/following/boards/
+
+  ## Parameters
+  - board: the Board to unfollow. The format of the parameters should be
+  "username/board_name"
+  """
+  defdelegate unfollowBoard(board), to: Pinterex.Api.User
+
+  @doc """
   Returns a list of Interests that the authenticated User follows.
   https://developers.pinterest.com/docs/api/v1/me/following/interests/
 
@@ -142,15 +163,77 @@ defmodule Pinterex do
   By default the API returns the ID, URL and the name of the specified Board
 
   ## Parameters
-  - board: the id of the Board whose info you wish to get
+  - board: the id of the Board whose info you wish to get. The format of the parameter should be
+  "username/board_name" (required)
   """
   defdelegate getBoard(board), to: Pinterex.Api.Board
+
+  @doc """
+  Delete the specified Pin for the authenticated User.
+  https://developers.pinterest.com/docs/api/v1/pins/<pin>
+
+  ## Parameters
+  - pin: the id of the Pin you wish to delete (required)
+  """
+  defdelegate deletePin(pin), to: Pinterex.Api.Pin
+
+  # @doc """
+  # Edit the specified Pin for the authenticated User.
+  # https://developers.pinterest.com/docs/api/v1/pins/<pin>
+
+  # ## Parameters
+  # - pin: the id of the Pin you wish to edit (required)
+  # - board: the Board you want to move the Pin to. The format of the parameters should be "username/board_name" (optional)
+  # - note: the new description (optional)
+  # - link: the new Pin link (optional)
+  # """
+  #defdelegate editPin(pin, board \\ nil, note \\ nil, link \\ nil), to: Pinterex.Api.Board
 
   @doc """
   Returns a list of Pins from the specified Board.
   https://developers.pinterest.com/docs/api/v1/boards/<board>/pins/
 
   By default the API returns the IDs, URLs, links and descriptions of the Pins.
+
+  ## Parameters
+  - board: the id of the Board whose pins you wish to get. The format of the parameters should be
+  "username/board_name" (required)
   """
   defdelegate getBoardPins(board), to: Pinterex.Api.Board
+
+  @doc """
+  Creates a Board with the specified name for the authenticated User.
+  https://developers.pinterest.com/docs/api/v1/boards/
+
+  By default the API returns the ID, URL and name of the created Board.
+
+  ## Parameters
+  - name: the name of the Board you wish to create (required)
+  - description: the description of the Board you wish to create (optional)
+  """
+  defdelegate createBoard(name, description \\ nil), to: Pinterex.Api.Board
+
+  @doc """
+  Deletes the specified Board for the authenticated User.
+  https://developers.pinterest.com/docs/api/v1/boards/<board>
+
+  ## Parameters
+  - board: The board you want to delete. The format of the parameters should be "username/board_name"
+  (required)
+  """
+  defdelegate deleteBoard(board), to: Pinterex.Api.Board
+
+  @doc """
+  Edit the specified Board for the authenticated User.
+  https://developers.pinterest.com/docs/api/v1/boards/<board>
+
+  By default the API returns the ID, URL, and name of the edited Board.
+
+  ## Parameters
+  - board: the id of the Board you wish to edit. The format of the parameters should be
+  "username/board_name" (required)
+  - name: the new name of the Board (optional)
+  - description: the new description of the Board (optional)
+  """
+  defdelegate editBoard(board, name \\ nil, description \\ nil), to: Pinterex.Api.Board
 end

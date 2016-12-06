@@ -30,6 +30,17 @@ defmodule Pinterex.Api.Base do
     get(path).body["data"]
   end
 
+  @doc """
+  This is the main function that does delete requests.
+  ## Parameters
+  - :delete: it only matches delete requests
+  - path: the path of the resource, this path should already contain
+  all the query field and everything
+  """
+  def execute_request(:delete, path) do
+    delete(path)
+  end
+
   def execute_request(:get, path, []) do
     execute_request(:get, path)
   end
@@ -51,5 +62,29 @@ defmodule Pinterex.Api.Base do
   def execute_request(:get, path, options) do
     fields = "?fields=" <> Enum.join(options, ",")
     execute_request(:get, path <> fields)
+  end
+
+  @doc """
+  This is the main function that does post requests.
+  ## Parameters
+  - :post: it only matches post requests
+  - path: the path of the resource, this path should already contain
+  all the query field and everything
+  - data: the data to post. Example: %{board: "username/board_name"}
+  """
+  def execute_request(:post, path, data) do
+    post(path, data)
+  end
+
+  @doc """
+  This is the main function that does patch requests.
+  ## Parameters
+  - :patch: it only matches patch requests
+  - path: the path of the resource, this path should already contain
+  all the query field and everything
+  - data: the data to . Example: %{name: "New Name"}
+  """
+  def execute_request(:patch, path, data) do
+    patch(path, data)
   end
 end

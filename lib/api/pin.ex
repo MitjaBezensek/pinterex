@@ -5,4 +5,8 @@ defmodule Pinterex.Api.Pin do
     Pinterex.execute_request(:get, "/pins/#{id}")
     |> Helpers.createPin
   end
+
+  def deletePin(pin) do
+    Pinterex.execute_request(:delete, "/pins/#{pin}/")
+  end
 end
