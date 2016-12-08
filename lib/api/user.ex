@@ -6,8 +6,8 @@ defmodule Pinterex.Api.User do
     |> Helpers.createUser
   end
 
-  def myBoards do
-    Pinterex.execute_request(:get, "/me/boards/")
+  def myBoards(options \\ []) do
+    Pinterex.execute_request(:get, "/me/boards/", options)
     |> Helpers.createBoards
   end
 

@@ -49,13 +49,36 @@ defmodule Pinterex do
   `Pinterex.me(["bio", "counts"])`
   """
   defdelegate me(options), to: Pinterex.Api.User
+
   @doc """
   Returns a list of the public Boards of the authenticated User.
-  https://developers.pinterest.com/docs/api/v1/boards/
 
-  By default the API returns their URLs, IDs and names.
+  ## Reference
+
+  By default the API returns their URLs, IDs and names. Use `Pinterex.myBoards/1` to get other fields.
+
+  [https://developers.pinterest.com/docs/api/v1/boards/](https://developers.pinterest.com/docs/api/v1/boards/])
   """
   defdelegate myBoards, to: Pinterex.Api.User
+
+  @doc """
+  Returns a list of the public Boards of the authenticated User.
+
+  ## Reference
+
+  By default the API returns their URLs, IDs and names.
+
+  [https://developers.pinterest.com/docs/api/v1/boards/](https://developers.pinterest.com/docs/api/v1/boards/])
+
+  ## Parameters
+
+  - options: if we wish to get other fields of the Boards we pass a list of
+  fields to fetch. To see which fields are available look at `Pinterex.Structs.Board`.
+
+  ## Example
+  `Pinterex.myBoards(["image", "counts"])`
+  """
+  defdelegate myBoards(options), to: Pinterex.Api.User
 
   @doc """
   Returns a list of Boards that Pinterest would suggest to the authenticated User if
