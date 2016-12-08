@@ -72,6 +72,7 @@ defmodule Pinterex do
   fields to fetch. To see which fields are available look at `Pinterex.Structs.Board`.
 
   ## Example
+
   `Pinterex.myBoards(["image", "counts"])`
   """
   defdelegate myBoards(options), to: Pinterex.Api.User
@@ -79,14 +80,38 @@ defmodule Pinterex do
   @doc """
   Returns a list of Boards that Pinterest would suggest to the authenticated User if
   they were to save the specified Pin.
-  https://developers.pinterest.com/docs/api/v1/boards/suggested/
 
-  By default the API returns the IDs, URLs and names of the Boards.
+  ## Reference 
+
+  By default the API returns the IDs, URLs and names of the Boards. Use `Pinterex.mySuggestedBoards/2` to get other fields.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
 
   ## Parameters
   - id: the id of the Pin for which you wish to get the suggestions (required)
   """
   defdelegate mySuggestedBoards(id), to: Pinterex.Api.User
+
+  @doc """
+  Returns a list of Boards that Pinterest would suggest to the authenticated User if
+  they were to save the specified Pin.
+
+  ## Reference 
+
+  By default the API returns the IDs, URLs and names of the Boards.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
+
+  ## Parameters
+
+  - id: the id of the Pin for which you wish to get the suggestions (required)
+  - options: if we wish to get other fields of the suggested Boards we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.Board`.
+
+  ## Example
+
+  `Pinterex.mySuggestedBoards("1253434223", ["image", "counts"])`
+  """
+  defdelegate mySuggestedBoards(id, options), to: Pinterex.Api.User
 
   @doc """
   Returns a list of Pins that the authenticated User liked.

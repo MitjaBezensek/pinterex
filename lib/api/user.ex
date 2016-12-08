@@ -11,8 +11,8 @@ defmodule Pinterex.Api.User do
     |> Helpers.createBoards
   end
 
-  def mySuggestedBoards(id) do
-    Pinterex.execute_request(:get, "/me/boards/suggested/?pin=#{id}")
+  def mySuggestedBoards(id, options \\ []) do
+    Pinterex.execute_request(:get, "/me/boards/suggested/?pin=#{id}", options)
     |> Helpers.createBoards
   end
 
