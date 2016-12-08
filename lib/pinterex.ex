@@ -18,8 +18,10 @@ defmodule Pinterex do
     Supervisor.start_link(children, opts)
   end
 
+  @doc false
   defdelegate execute_request(method, path), to: Pinterex.Api.Base
 
+  @doc false
   defdelegate execute_request(method, path, options), to: Pinterex.Api.Base
 
   @doc """
