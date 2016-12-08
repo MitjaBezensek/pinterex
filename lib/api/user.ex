@@ -1,7 +1,7 @@
 defmodule Pinterex.Api.User do
   alias Pinterex.Helpers.Helpers
 
-  def me(options) do
+  def me(options \\ []) do
     Pinterex.execute_request(:get, "/me/", options)
     |> Helpers.createUser
   end

@@ -26,17 +26,36 @@ defmodule Pinterex do
 
   @doc """
   Used for fetching the data of the authenticated User's profile.
-  https://developers.pinterest.com/docs/api/v1/me
+
+  ## Reference
+
+  By default the API returns first and last name, ID and
+  URL of the authenticated User. Use `Pinterex.me/1` if you wish to get other fields.
+
+  [https://developers.pinterest.com/docs/api/v1/me](https://developers.pinterest.com/docs/api/v1/me)
+
+  """
+  defdelegate me, to: Pinterex.Api.User
+
+  @doc """
+  Used for fetching the data of the authenticated User's profile.
+
+  ## Reference
 
   By default the API returns first and last name, ID and
   URL of the authenticated User.
-  ## Parameters
-  - options: if we wish to get other fields of the User we pass a list of
-  fields to fetch. For example we can get bio and counts fields by calling
-  me(["bio", "counts"])
-  """
-  defdelegate me(options \\ []), to: Pinterex.Api.User
 
+  [https://developers.pinterest.com/docs/api/v1/me](https://developers.pinterest.com/docs/api/v1/me)
+
+  ## Parameters
+
+  - options: if we wish to get other fields of the User we pass a list of
+  fields to fetch. To see which fields are available look at `Pinterex.Structs.User`.
+
+  ## Example
+  `Pinterex.me(["bio", "counts"])`
+  """
+  defdelegate me(options), to: Pinterex.Api.User
   @doc """
   Returns a list of the public Boards of the authenticated User.
   https://developers.pinterest.com/docs/api/v1/boards/
