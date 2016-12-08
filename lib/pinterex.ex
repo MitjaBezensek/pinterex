@@ -130,7 +130,7 @@ defmodule Pinterex do
 
   ## Reference
 
-  By default the API returns the IDs, URLs, links and descriptions of the Pins. Use `Pinterex.myLikes/1` to get other fields.
+  By default the API returns the IDs, URLs, links and descriptions of the Pins.
 
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
 
@@ -143,10 +143,30 @@ defmodule Pinterex do
 
   @doc """
   Returns a list of Pins that the authenticated User pinned.
-  https://developers.pinterest.com/docs/api/v1/me/pins/
-  By default the API returns the IDs, URLs, links and descriptions of the User's Pins.
+
+  ## Reference
+
+  By default the API returns the IDs, URLs, links and descriptions of the User's Pins. Use `Pinterex.myPins/1` to get other fields.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
   defdelegate myPins, to: Pinterex.Api.User
+
+  @doc """
+  Returns a list of Pins that the authenticated User pinned.
+
+  ## Reference
+
+  By default the API returns the IDs, URLs, links and descriptions of the User's Pins.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
+
+  ## Parameters
+
+  - options: if we wish to get other fields of the Pins we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.Pin`
+
+  """
+  defdelegate myPins(options), to: Pinterex.Api.User
 
   @doc """
   Returns a list of the authenticated User's Boards that match the search query.

@@ -21,8 +21,8 @@ defmodule Pinterex.Api.User do
     |> Helpers.createPins
   end
 
-  def myPins do
-    Pinterex.execute_request(:get, "/me/pins/")
+  def myPins(options \\ []) do
+    Pinterex.execute_request(:get, "/me/pins/", options)
     |> Helpers.createPins
   end
 
