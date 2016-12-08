@@ -1,4 +1,8 @@
 defmodule Pinterex.Helpers.Helpers do
+  @moduledoc """
+  Various helpers for creating the structs from the fetched data.
+  """
+  
   alias Pinterex.Structs.{User, Board, Pin, Interest}
 
   def createBoard(board) do

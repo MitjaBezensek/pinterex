@@ -1,4 +1,7 @@
 defmodule Pinterex.Api.Board do
+  @moduledoc """
+  This module handles the Boards specific API calls.
+  """
   alias Pinterex.Helpers.Helpers
 
   def getBoardPins(board) do

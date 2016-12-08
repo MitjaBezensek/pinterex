@@ -1,4 +1,8 @@
 defmodule Pinterex.Api.User do
+  @moduledoc """
+  This module handles the User and profile specific API calls.
+  """
+  
   alias Pinterex.Helpers.Helpers
 
   def me(options \\ []) do

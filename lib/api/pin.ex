@@ -1,4 +1,8 @@
 defmodule Pinterex.Api.Pin do
+  @moduledoc """
+  This moducle handles the Pin specific API calls.
+  """
+  
   alias Pinterex.Helpers.Helpers
 
   def getPin(id) do

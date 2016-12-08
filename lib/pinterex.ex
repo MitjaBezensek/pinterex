@@ -1,4 +1,7 @@
 defmodule Pinterex do
+  @moduledoc """
+  This is the main module of the libray. Use it to access all of the available Pinterest API calls.
+  """
   use Application
 
   @doc false
