@@ -16,8 +16,8 @@ defmodule Pinterex.Api.User do
     |> Helpers.createBoards
   end
 
-  def myLikes do
-    Pinterex.execute_request(:get, "/me/likes/")
+  def myLikes(options \\ []) do
+    Pinterex.execute_request(:get, "/me/likes/", options)
     |> Helpers.createPins
   end
 
