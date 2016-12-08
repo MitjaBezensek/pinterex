@@ -22,11 +22,9 @@ defmodule Pinterex do
 
   ## Reference
 
-  By default the API returns first and last name, ID and
-  URL of the authenticated User. Use `Pinterex.me/1` if you wish to get other fields.
+  By default the API returns first and last name, ID and URL of the authenticated User. Use `Pinterex.me/1` if you wish to get other fields.
 
-  [https://developers.pinterest.com/docs/api/v1/me](https://developers.pinterest.com/docs/api/v1/me)
-
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
   defdelegate me, to: Pinterex.Api.User
 
@@ -35,15 +33,13 @@ defmodule Pinterex do
 
   ## Reference
 
-  By default the API returns first and last name, ID and
-  URL of the authenticated User.
+  By default the API returns first and last name, ID and URL of the authenticated User.
 
-  [https://developers.pinterest.com/docs/api/v1/me](https://developers.pinterest.com/docs/api/v1/me)
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
 
   ## Parameters
 
-  - options: if we wish to get other fields of the User we pass a list of
-  fields to fetch. To see which fields are available look at `Pinterex.Structs.User`.
+  - options: if we wish to get other fields of the User we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.User`.
 
   ## Example
   `Pinterex.me(["bio", "counts"])`
@@ -57,7 +53,7 @@ defmodule Pinterex do
 
   By default the API returns their URLs, IDs and names. Use `Pinterex.myBoards/1` to get other fields.
 
-  [https://developers.pinterest.com/docs/api/v1/boards/](https://developers.pinterest.com/docs/api/v1/boards/])
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
   defdelegate myBoards, to: Pinterex.Api.User
 
@@ -68,7 +64,7 @@ defmodule Pinterex do
 
   By default the API returns their URLs, IDs and names.
 
-  [https://developers.pinterest.com/docs/api/v1/boards/](https://developers.pinterest.com/docs/api/v1/boards/])
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
 
   ## Parameters
 
