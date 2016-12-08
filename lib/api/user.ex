@@ -26,13 +26,13 @@ defmodule Pinterex.Api.User do
     |> Helpers.createPins
   end
 
-  def searchMyBoards(query) do
-    Pinterex.execute_request(:get, "/me/search/boards/?query=#{query}")
+  def searchMyBoards(query, options \\ []) do
+    Pinterex.execute_request(:get, "/me/search/boards/?query=#{query}", options)
     |> Helpers.createBoards
   end
 
-  def searchMyPins(query) do
-    Pinterex.execute_request(:get, "/me/search/pins/?query=#{query}")
+  def searchMyPins(query, options \\ []) do
+    Pinterex.execute_request(:get, "/me/search/pins/?query=#{query}", options)
     |> Helpers.createPins
   end
 

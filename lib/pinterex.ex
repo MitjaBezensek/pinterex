@@ -121,7 +121,6 @@ defmodule Pinterex do
   By default the API returns the IDs, URLs, links and descriptions of the Pins. Use `Pinterex.myLikes/1` to get other fields.
 
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
-
   """
   defdelegate myLikes, to: Pinterex.Api.User
 
@@ -138,6 +137,9 @@ defmodule Pinterex do
 
   - options: if we wish to get other fields of the Pins we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.Pin`
 
+  ## Example
+
+  `Pinterex.myLikes(["note", "counts"])`
   """
   defdelegate myLikes(options), to: Pinterex.Api.User
 
@@ -165,30 +167,79 @@ defmodule Pinterex do
 
   - options: if we wish to get other fields of the Pins we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.Pin`
 
+  ## Example
+  `Pinterex.myPins(["note", "counts"])`
   """
   defdelegate myPins(options), to: Pinterex.Api.User
 
   @doc """
   Returns a list of the authenticated User's Boards that match the search query.
-  https://developers.pinterest.com/docs/api/v1/me/search/boards/
 
-  By default the API returns IDs, URLs and names of the matched Boards.
+  ## Reference
+
+  By default the API returns IDs, URLs and names of the matched Boards. Use `Pinterex.searchMyBoards/2` to get other fields.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
 
   ## Parameters
-  - query: the query string you wish to search for
+  - query: the query string you wish to search for (required)
   """
   defdelegate searchMyBoards(query), to: Pinterex.Api.User
 
   @doc """
-  Returns a list of the authenticated User's Pins that match the search query.
-  https://developers.pinterest.com/docs/api/v1/me/search/pins/
+  Returns a list of the authenticated User's Boards that match the search query.
 
-  By default the API returns IDs, URLs, links and descriptions of the matched Pins.
+  ## Reference
+
+  By default the API returns IDs, URLs and names of the matched Boards.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
 
   ## Parameters
-  - query: the query string you wish to search for
+  - query: the query string you wish to search for (required)
+  - options: if we wish to get other fields of the Boards we pass a list of
+  fields to fetch. To see which fields are available look at `Pinterex.Structs.Board`.
+
+  ## Example
+
+  `Pinterex.searchMyBoards("garden", ["image', "counts"])`
+  """
+  defdelegate searchMyBoards(query, options), to: Pinterex.Api.User
+
+  @doc """
+  Returns a list of the authenticated User's Pins that match the search query.
+
+  ## Reference
+
+  By default the API returns IDs, URLs, links and descriptions of the matched Pins. Use `Pinterex.searchMyPins/2` to get other fields.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
+
+
+  ## Parameters
+  - query: the query string you wish to search for (required)
   """
   defdelegate searchMyPins(query), to: Pinterex.Api.User
+
+  @doc """
+  Returns a list of the authenticated User's Pins that match the search query.
+
+  ## Reference
+
+  By default the API returns IDs, URLs, links and descriptions of the matched Pins. Use `Pinterex.searchMyPins/2` to get other fields.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
+
+
+  ## Parameters
+  - query: the query string you wish to search for (required)
+  - options: if we wish to get other fields of the Pins we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.Pin`
+
+  ## Example
+  
+  `Pinterex.searchMyPins("garden", ["note", "counts"])`
+  """
+  defdelegate searchMyPins(query, options), to: Pinterex.Api.User
 
   @doc """
   Returns the Users that follow the authenticated User
