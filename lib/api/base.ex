@@ -60,8 +60,7 @@ defmodule Pinterex.Api.Base do
   crashes since it cannot parse the response correctly.
   """
   def execute_request(:get, path, options) do
-    fields = "?fields=" <> Enum.join(options, ",")
-    execute_request(:get, path <> fields)
+    execute_request(:get, path <> get_fields(path, options))
   end
 
   @doc """
@@ -86,5 +85,13 @@ defmodule Pinterex.Api.Base do
   """
   def execute_request(:patch, path, data) do
     patch(path, data)
+  end
+
+  defp get_fields(path, options) do
+    if(String.contains? path, "?") do
+      "&fields=" <> Enum.join(options, ",")
+    else
+      "?fields=" <> Enum.join(options, ",")
+    end
   end
 end
