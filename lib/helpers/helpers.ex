@@ -32,7 +32,6 @@ defmodule Pinterex.Helpers.Helpers do
   end
 
   def create_pins(response) do
-    IO.puts inspect(response["data"])
     pins =
       response["data"]
       |> Enum.map(fn pin -> create_single_pin(pin) end)
