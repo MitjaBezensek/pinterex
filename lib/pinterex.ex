@@ -16,9 +16,10 @@ defmodule Pinterex do
 
   @doc false
   defdelegate execute_request(method, path), to: Pinterex.Api.Base
-
   @doc false
-  defdelegate execute_request(method, path, options), to: Pinterex.Api.Base
+  defdelegate execute_request(method, createStruct, path), to: Pinterex.Api.Base
+  @doc false
+  defdelegate execute_request(method, createStruct, path, options), to: Pinterex.Api.Base
 
   @doc """
   Used for fetching the data of the authenticated User's profile.

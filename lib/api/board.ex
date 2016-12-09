@@ -5,23 +5,19 @@ defmodule Pinterex.Api.Board do
   alias Pinterex.Helpers.Helpers
 
   def getBoardPins(board, options \\ []) do
-    Pinterex.execute_request(:get, "/boards/#{board}/pins/", options)
-    |> Helpers.createPins
+    Pinterex.execute_request(:get, &Helpers.createPins/1, "/boards/#{board}/pins/", options)
   end
 
   def getBoard(board, options \\ []) do
-    Pinterex.execute_request(:get, "/boards/#{board}", options)
-    |> Helpers.createBoard
+    Pinterex.execute_request(:get, &Helpers.createBoard/1, "/boards/#{board}", options)
   end
 
   def createBoard(name, nil) do
-    Pinterex.execute_request(:post, "/boards/", %{name: name})
-    |> Helpers.createBoard
+    Pinterex.execute_request(:post, &Helpers.createBoard/1, "/boards/", %{name: name})
   end
 
   def createBoard(name, description) do
-    Pinterex.execute_request(:post, "/boards/", %{name: name, description: description})
-    |> Helpers.createBoard
+    Pinterex.execute_request(:post, &Helpers.createBoard/1, "/boards/", %{name: name, description: description})
   end
 
   def deleteBoard(board) do

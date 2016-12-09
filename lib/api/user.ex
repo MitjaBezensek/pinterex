@@ -2,52 +2,43 @@ defmodule Pinterex.Api.User do
   @moduledoc """
   This module handles the User and profile specific API calls.
   """
-  
+
   alias Pinterex.Helpers.Helpers
 
   def me(options \\ []) do
-    Pinterex.execute_request(:get, "/me/", options)
-    |> Helpers.createUser
+    Pinterex.execute_request(:get, &Helpers.createUser/1, "/me/", options)
   end
 
   def myBoards(options \\ []) do
-    Pinterex.execute_request(:get, "/me/boards/", options)
-    |> Helpers.createBoards
+    Pinterex.execute_request(:get, &Helpers.createBoards/1, "/me/boards/", options)
   end
 
   def mySuggestedBoards(id, options \\ []) do
-    Pinterex.execute_request(:get, "/me/boards/suggested/?pin=#{id}", options)
-    |> Helpers.createBoards
+    Pinterex.execute_request(:get, &Helpers.createBoards/1, "/me/boards/suggested/?pin=#{id}", options)
   end
 
   def myLikes(options \\ []) do
-    Pinterex.execute_request(:get, "/me/likes/", options)
-    |> Helpers.createPins
+    Pinterex.execute_request(:get, &Helpers.createPins/1, "/me/likes/", options)
   end
 
   def myPins(options \\ []) do
-    Pinterex.execute_request(:get, "/me/pins/", options)
-    |> Helpers.createPins
+    Pinterex.execute_request(:get, &Helpers.createPins/1, "/me/pins/", options)
   end
 
   def searchMyBoards(query, options \\ []) do
-    Pinterex.execute_request(:get, "/me/search/boards/?query=#{query}", options)
-    |> Helpers.createBoards
+    Pinterex.execute_request(:get, &Helpers.createBoards/1, "/me/search/boards/?query=#{query}", options)
   end
 
   def searchMyPins(query, options \\ []) do
-    Pinterex.execute_request(:get, "/me/search/pins/?query=#{query}", options)
-    |> Helpers.createPins
+    Pinterex.execute_request(:get, &Helpers.createPins/1, "/me/search/pins/?query=#{query}", options)
   end
 
   def myFollowers(options \\ []) do
-    Pinterex.execute_request(:get, "/me/followers/", options)
-    |> Helpers.createUsers
+    Pinterex.execute_request(:get, &Helpers.createUsers/1, "/me/followers/", options)
   end
 
   def myFollowingBoards(options \\ []) do
-    Pinterex.execute_request(:get, "/me/following/boards/", options)
-    |> Helpers.createBoards
+    Pinterex.execute_request(:get, &Helpers.createBoards/1, "/me/following/boards/", options)
   end
 
   def followBoard(board) do
@@ -59,12 +50,10 @@ defmodule Pinterex.Api.User do
   end
 
   def myFollowingInterests do
-    Pinterex.execute_request(:get, "/me/following/interests/")
-    |> Helpers.createInterests
+    Pinterex.execute_request(:get, &Helpers.createInterests/1, "/me/following/interests/")
   end
 
   def myFollowingUsers(options \\ []) do
-    Pinterex.execute_request(:get, "/me/following/users", options)
-    |> Helpers.createUsers
+    Pinterex.execute_request(:get, &Helpers.createUsers/1, "/me/following/users", options)
   end
 end
