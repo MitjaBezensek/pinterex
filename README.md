@@ -10,7 +10,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
     ```elixir
     def deps do
-      [{:pinterex, "~> 0.1.0"}]
+      [{:pinterex, "~> 0.2.0"}]
     end
     ```
 
