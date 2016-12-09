@@ -407,21 +407,50 @@ defmodule Pinterex do
 
   @doc """
   Returns the Board information.
-  https://developers.pinterest.com/docs/api/v1/boards/<board>/
 
-  By default the API returns the ID, URL and the name of the specified Board
+  ## Reference
+
+  By default the API returns the ID, URL and the name of the specified Board. Use `Pinterex.getBoard/2` to get other fields.
+
+  [https://developers.pinterest.com/docs/api/boards/](https://developers.pinterest.com/docs/api/boards/)
 
   ## Parameters
+
   - board: the id of the Board whose info you wish to get. The format of the parameter should be
   "username/board_name" (required)
   """
   defdelegate getBoard(board), to: Pinterex.Api.Board
 
   @doc """
-  Delete the specified Pin for the authenticated User.
-  https://developers.pinterest.com/docs/api/v1/pins/<pin>
+  Returns the Board information.
+
+  ## Reference
+
+  By default the API returns the ID, URL and the name of the specified Board.
+
+  [https://developers.pinterest.com/docs/api/boards/](https://developers.pinterest.com/docs/api/boards/)
 
   ## Parameters
+
+  - board: the id of the Board whose info you wish to get. The format of the parameter should be
+  "username/board_name" (required)
+  - options: if we wish to get other fields of the Board we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.Board`.
+
+  ## Example
+
+  `Pinterex.getBoard("username/board_name", ["image", "counts"])`
+  """
+  defdelegate getBoard(board, options), to: Pinterex.Api.Board
+
+  @doc """
+  Delete the specified Pin for the authenticated User.
+
+  ## Reference
+
+  [https://developers.pinterest.com/docs/api/pins/](https://developers.pinterest.com/docs/api/pins/)
+
+  ## Parameters
+
   - pin: the id of the Pin you wish to delete (required)
   """
   defdelegate deletePin(pin), to: Pinterex.Api.Pin
@@ -440,15 +469,40 @@ defmodule Pinterex do
 
   @doc """
   Returns a list of Pins from the specified Board.
-  https://developers.pinterest.com/docs/api/v1/boards/<board>/pins/
 
-  By default the API returns the IDs, URLs, links and descriptions of the Pins.
+  ## Reference
+
+  By default the API returns the IDs, URLs, links and descriptions of the Pins. Use `Pinterex.getBoardPins/2` to get other fields.
+
+  [https://developers.pinterest.com/docs/api/boards/](https://developers.pinterest.com/docs/api/boards/)
 
   ## Parameters
+
   - board: the id of the Board whose pins you wish to get. The format of the parameters should be
   "username/board_name" (required)
   """
   defdelegate getBoardPins(board), to: Pinterex.Api.Board
+
+  @doc """
+  Returns a list of Pins from the specified Board.
+
+  ## Reference
+
+  By default the API returns the IDs, URLs, links and descriptions of the Pins.
+
+  [https://developers.pinterest.com/docs/api/boards/](https://developers.pinterest.com/docs/api/boards/)
+
+  ## Parameters
+
+  - board: the id of the Board whose pins you wish to get. The format of the parameters should be
+  "username/board_name" (required)
+  - options: if we wish to get other fields of the Pins we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.Pin`.
+
+  ## Example
+
+  `Pinterex.getBoardPins("username/board_name", ["note", "counts'])`
+  """
+  defdelegate getBoardPins(board, options), to: Pinterex.Api.Board
 
   @doc """
   Creates a Board with the specified name for the authenticated User.

@@ -4,13 +4,13 @@ defmodule Pinterex.Api.Board do
   """
   alias Pinterex.Helpers.Helpers
 
-  def getBoardPins(board) do
-    Pinterex.execute_request(:get, "/boards/#{board}/pins/")
+  def getBoardPins(board, options \\ []) do
+    Pinterex.execute_request(:get, "/boards/#{board}/pins/", options)
     |> Helpers.createPins
   end
 
-  def getBoard(board) do
-    Pinterex.execute_request(:get, "/boards/#{board}")
+  def getBoard(board, options \\ []) do
+    Pinterex.execute_request(:get, "/boards/#{board}", options)
     |> Helpers.createBoard
   end
 
