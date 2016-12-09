@@ -305,8 +305,12 @@ defmodule Pinterex do
   @doc """
   Follow the specified Board as the authenticated User.
 
+  ## Reference
+
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
+
   ## Parameters
+
   - board: the Board to follow. The format of the parameters should be
   "username/board_name"
   """
@@ -314,9 +318,13 @@ defmodule Pinterex do
 
   @doc """
   Unfollow the specified Board as the authenticated User.
-  https://developers.pinterest.com/docs/api/v1/me/following/boards/
+
+  ## Reference
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
 
   ## Parameters
+
   - board: the Board to unfollow. The format of the parameters should be
   "username/board_name"
   """
@@ -324,30 +332,78 @@ defmodule Pinterex do
 
   @doc """
   Returns a list of Interests that the authenticated User follows.
-  https://developers.pinterest.com/docs/api/v1/me/following/interests/
+
+  ## Reference
 
   By default the API returns the IDs and names of the Interests.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
   defdelegate myFollowingInterests, to: Pinterex.Api.User
 
   @doc """
   Returns the Users that the authenticated User follows.
-  https://developers.pinterest.com/docs/api/v1/me/following/users/
 
-  By default the API returns the first names, last names, IDs and URLs of the Users.
+  ## Reference
+
+  By default the API returns the first names, last names, IDs and URLs of the Users. Use `Pinterex.myFollowingUsers/1` to get other fields.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
   defdelegate myFollowingUsers, to: Pinterex.Api.User
 
   @doc """
-  Returns the information of the requested Pin.
-  https://developers.pinterest.com/docs/api/v1/pins/<pin>/
+  Returns the Users that the authenticated User follows.
 
-  By default the API returns the ID, URL, link and the description of the Pin.
+  ## Reference
+
+  By default the API returns the first names, last names, IDs and URLs of the Users.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
 
   ## Parameters
+
+  - options: if we wish to get other fields of the Users we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.User`.
+
+  ## Example
+  `Pinterex.myFollowingUsers(["bio", "counts"])`
+  """
+  defdelegate myFollowingUsers(options), to: Pinterex.Api.User
+
+  @doc """
+  Returns the information of the requested Pin.
+
+  ## Reference
+
+  By default the API returns the ID, URL, link and the description of the Pin. Use `Pinterex.getPin/2` to get other fields.
+
+  [https://developers.pinterest.com/docs/api/pins/](https://developers.pinterest.com/docs/api/pins/)
+
+  ## Parameters
+
   - id: the id of the Pin
   """
   defdelegate getPin(id), to: Pinterex.Api.Pin
+
+  @doc """
+  Returns the information of the requested Pin.
+
+  ## Reference
+
+  By default the API returns the ID, URL, link and the description of the Pin.
+
+  [https://developers.pinterest.com/docs/api/pins/](https://developers.pinterest.com/docs/api/pins/)
+
+  ## Parameters
+
+  - id: the id of the Pin
+  - options: if we wish to get other fields of the Pin we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.Pin`
+
+  ## Example
+
+  `Pinterex.getPin("123456", ["note", "counts"])`
+  """
+  defdelegate getPin(id, options), to: Pinterex.Api.Pin
 
   @doc """
   Returns the Board information.

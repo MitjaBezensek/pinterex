@@ -63,8 +63,8 @@ defmodule Pinterex.Api.User do
     |> Helpers.createInterests
   end
 
-  def myFollowingUsers do
-    Pinterex.execute_request(:get, "/me/following/users")
+  def myFollowingUsers(options \\ []) do
+    Pinterex.execute_request(:get, "/me/following/users", options)
     |> Helpers.createUsers
   end
 end
