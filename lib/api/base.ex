@@ -104,12 +104,27 @@ defmodule Pinterex.Api.Base do
     execute_request(:get, createStruct, path <> get_fields(path, options))
   end
 
-  defp get_fields(path, options) do
-    if(String.contains? path, "?") do
-      "&fields=" <> Enum.join(options, ",")
-    else
-      "?fields=" <> Enum.join(options, ",")
-    end
+  def get_fields(path, options) do
+    start =
+      if(String.contains? path, "?") do
+        "&"
+      else
+        "?"
+      end
+    start <> Enum.join(Enum.map(options, &concat_items/1), "&")
+  end
+
+  def test(item) do
+    item
+  end
+
+  def concat_items({k, v}) when is_list(v) do
+    "#{k}=" <> Enum.join(v, ",")
+  end
+
+
+  def concat_items({k, v}) do
+    "#{k}=#{v}"
   end
 
   defp handle_response(response, createStruct) do
