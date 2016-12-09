@@ -6,7 +6,7 @@ defmodule Pinterex.Api.Pin do
   alias Pinterex.Helpers.Helpers
 
   def getPin(id, options \\ []) do
-    Pinterex.execute_request(:get, &Helpers.createPin/1, "/pins/#{id}", options)
+    Pinterex.execute_request(:get, &Helpers.create_pin/1, "/pins/#{id}", options)
   end
 
   def deletePin(pin) do

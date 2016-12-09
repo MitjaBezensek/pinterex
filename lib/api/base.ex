@@ -8,7 +8,7 @@ defmodule Pinterex.Api.Base do
   plug Tesla.Middleware.BaseUrl, "https://api.pinterest.com/v1/"
   plug Tesla.Middleware.Query, [access_token: key]
   plug Tesla.Middleware.JSON
-  #plug Tesla.Middleware.DebugLogger
+  plug Tesla.Middleware.DebugLogger
 
   defp key do
     Application.get_env(:pinterest, :key) ||
@@ -101,7 +101,10 @@ defmodule Pinterex.Api.Base do
   crashes since it cannot parse the response correctly.
   """
   def execute_request(:get, createStruct, path, options) do
-    execute_request(:get, createStruct, path <> get_fields(path, options))
+    case List.keyfind(options, :next, 0) do
+      {:next, url} -> execute_request(:get, createStruct, url)
+      _ -> execute_request(:get, createStruct, path <> get_fields(path, options))
+    end
   end
 
   def get_fields(path, options) do
@@ -129,7 +132,7 @@ defmodule Pinterex.Api.Base do
 
   defp handle_response(response, createStruct) do
     case response.status do
-      200 -> {:ok, createStruct.(response.body["data"])}
+      200 -> {:ok, createStruct.(response.body)}
       _ -> {:error, response.body["message"]}
     end
   end
