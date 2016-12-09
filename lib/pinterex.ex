@@ -525,9 +525,24 @@ defmodule Pinterex do
   ## Parameters
 
   - name: the name of the Board you wish to create (required)
+  """
+  defdelegate create_board(name), to: Pinterex.Api.Board
+
+  @doc """
+  Creates a Board with the specified name for the authenticated User.
+
+  ## Reference
+
+  By default the API returns the ID, URL and name of the created Board.
+
+  [https://developers.pinterest.com/docs/api/boards/](https://developers.pinterest.com/docs/api/boards/)
+
+  ## Parameters
+
+  - name: the name of the Board you wish to create (required)
   - description: the description of the Board you wish to create (optional)
   """
-  defdelegate create_board(name, description \\ nil), to: Pinterex.Api.Board
+  defdelegate create_board(name, description), to: Pinterex.Api.Board
 
   @doc """
   Deletes the specified Board for the authenticated User.

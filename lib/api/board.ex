@@ -12,7 +12,7 @@ defmodule Pinterex.Api.Board do
     Pinterex.execute_request(:get, &Helpers.create_board/1, "/boards/#{board}", options)
   end
 
-  def create_board(name, nil) do
+  def create_board(name) do
     Pinterex.execute_request(:post, &Helpers.create_board/1, "/boards/", %{name: name})
   end
 
