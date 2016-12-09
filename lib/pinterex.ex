@@ -506,11 +506,15 @@ defmodule Pinterex do
 
   @doc """
   Creates a Board with the specified name for the authenticated User.
-  https://developers.pinterest.com/docs/api/v1/boards/
+
+  ## Reference
 
   By default the API returns the ID, URL and name of the created Board.
 
+  [https://developers.pinterest.com/docs/api/boards/](https://developers.pinterest.com/docs/api/boards/)
+
   ## Parameters
+
   - name: the name of the Board you wish to create (required)
   - description: the description of the Board you wish to create (optional)
   """
@@ -518,9 +522,13 @@ defmodule Pinterex do
 
   @doc """
   Deletes the specified Board for the authenticated User.
-  https://developers.pinterest.com/docs/api/v1/boards/<board>
+
+  ## Reference
+
+  [https://developers.pinterest.com/docs/api/boards/](https://developers.pinterest.com/docs/api/boards/)
 
   ## Parameters
+
   - board: The board you want to delete. The format of the parameters should be "username/board_name"
   (required)
   """
@@ -528,11 +536,15 @@ defmodule Pinterex do
 
   @doc """
   Edit the specified Board for the authenticated User.
-  https://developers.pinterest.com/docs/api/v1/boards/<board>
+
+  ## Reference
 
   By default the API returns the ID, URL, and name of the edited Board.
 
+  [https://developers.pinterest.com/docs/api/boards/](https://developers.pinterest.com/docs/api/boards/)
+
   ## Parameters
+
   - board: the id of the Board you wish to edit. The format of the parameters should be
   "username/board_name" (required)
   - name: the new name of the Board (optional)
