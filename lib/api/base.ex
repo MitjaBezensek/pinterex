@@ -8,7 +8,7 @@ defmodule Pinterex.Api.Base do
   plug Tesla.Middleware.BaseUrl, "https://api.pinterest.com/v1/"
   plug Tesla.Middleware.Query, [access_token: key]
   plug Tesla.Middleware.JSON
-  plug Tesla.Middleware.DebugLogger
+  #plug Tesla.Middleware.DebugLogger
 
   defp key do
     Application.get_env(:pinterest, :key) ||
@@ -29,9 +29,9 @@ defmodule Pinterex.Api.Base do
   The data of the returned response. If the response is not successful it
   crashes since it cannot parse the response correctly.
   """
-  def execute_request(:get, createStruct, path) do
+  def execute_request(:get, create_struct, path) do
     get(path)
-    |> handle_response(createStruct)
+    |> handle_response(create_struct)
   end
 
   @doc """
@@ -46,21 +46,6 @@ defmodule Pinterex.Api.Base do
   """
   def execute_request(:post, path, data) do
     post(path, data)
-    |> handle_response
-  end
-
-  @doc """
-  This is the main function that does patch requests.
-
-  ## Parameters
-
-  - :patch: it only matches patch requests
-  - path: the path of the resource, this path should already contain
-  all the query field and everything
-  - data: the data to . Example: %{name: "New Name"}
-  """
-  def execute_request(:patch, path, data) do
-    patch(path, data)
     |> handle_response
   end
 
@@ -107,6 +92,21 @@ defmodule Pinterex.Api.Base do
     end
   end
 
+  @doc """
+  This is the main function that does patch requests.
+
+  ## Parameters
+
+  - :patch: it only matches patch requests
+  - path: the path of the resource, this path should already contain
+  all the query field and everything
+  - data: the data to . Example: %{name: "New Name"}
+  """
+  def execute_request(:patch, create_struct, path, data) do
+    patch(path, data)
+    |> handle_response(create_struct)
+  end
+
   def get_fields(path, options) do
     start =
       if(String.contains? path, "?") do
@@ -117,14 +117,9 @@ defmodule Pinterex.Api.Base do
     start <> Enum.join(Enum.map(options, &concat_items/1), "&")
   end
 
-  def test(item) do
-    item
-  end
-
   def concat_items({k, v}) when is_list(v) do
     "#{k}=" <> Enum.join(v, ",")
   end
-
 
   def concat_items({k, v}) do
     "#{k}=#{v}"

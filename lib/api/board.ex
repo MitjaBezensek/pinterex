@@ -4,39 +4,37 @@ defmodule Pinterex.Api.Board do
   """
   alias Pinterex.Helpers.Helpers
 
-  def getBoardPins(board, options \\ []) do
+  def get_board_pins(board, options \\ []) do
     Pinterex.execute_request(:get, &Helpers.create_pins/1, "/boards/#{board}/pins/", options)
   end
 
-  def getBoard(board, options \\ []) do
+  def get_board(board, options \\ []) do
     Pinterex.execute_request(:get, &Helpers.create_board/1, "/boards/#{board}", options)
   end
 
-  def createBoard(name, nil) do
+  def create_board(name, nil) do
     Pinterex.execute_request(:post, &Helpers.create_board/1, "/boards/", %{name: name})
   end
 
-  def createBoard(name, description) do
+  def create_board(name, description) do
     Pinterex.execute_request(:post, &Helpers.create_board/1, "/boards/", %{name: name, description: description})
   end
 
-  def deleteBoard(board) do
+  def delete_board(board) do
     Pinterex.execute_request(:delete, "/boards/#{board}/")
     |> Helpers.create_board
   end
 
-  def editBoard(board, name, nil) do
-    Pinterex.execute_request(:patch, "/boards/#{board}/", %{name: name})
-    |> Helpers.create_board
+  def edit_board(board, [name: name, description: description]) do
+    Pinterex.execute_request(:patch, &Helpers.create_board/1, "/boards/#{board}/", %{name: name, description: description})
   end
 
-  def editBoard(board, nil, description) do
-    Pinterex.execute_request(:patch, "/boards/#{board}/", %{description: description})
-    |> Helpers.create_board
+  def edit_board(board, [name: name]) do
+    Pinterex.execute_request(:patch, &Helpers.create_board/1, "/boards/#{board}/", %{name: name})
   end
 
-  def editBoard(board, name, description) do
-    Pinterex.execute_request(:patch, "/boards/#{board}/", %{name: name, description: description})
-    |> Helpers.create_board
+  def edit_board(board, [description: description]) do
+    Pinterex.execute_request(:patch, &Helpers.create_board/1, "/boards/#{board}/", %{description: description})
   end
+
 end

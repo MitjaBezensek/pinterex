@@ -46,7 +46,7 @@ defmodule Pinterex do
   - options: if we wish to get other fields of the User we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.User`.
 
   ## Example
-  `Pinterex.me(["bio", "counts"])`
+  `Pinterex.me([fields: ["bio", "counts"]])`
   """
   defdelegate me(options), to: Pinterex.Api.User
 
@@ -55,11 +55,11 @@ defmodule Pinterex do
 
   ## Reference
 
-  By default the API returns their URLs, IDs and names. Use `Pinterex.myBoards/1` to get other fields.
+  By default the API returns their URLs, IDs and names. Use `Pinterex.my_boards/1` to get other fields.
 
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
-  defdelegate myBoards, to: Pinterex.Api.User
+  defdelegate my_boards, to: Pinterex.Api.User
 
   @doc """
   Returns a list of the public Boards of the authenticated User.
@@ -77,30 +77,32 @@ defmodule Pinterex do
 
   ## Example
 
-  `Pinterex.myBoards(["image", "counts"])`
+  `Pinterex.my_boards([fields: ["image", "counts"]])`
+
+  `Pinterex.my_boards([fields: ["image", "counts"], limit: 50])`
   """
-  defdelegate myBoards(options), to: Pinterex.Api.User
+  defdelegate my_boards(options), to: Pinterex.Api.User
 
   @doc """
   Returns a list of Boards that Pinterest would suggest to the authenticated User if
   they were to save the specified Pin.
 
-  ## Reference 
+  ## Reference
 
-  By default the API returns the IDs, URLs and names of the Boards. Use `Pinterex.mySuggestedBoards/2` to get other fields.
+  By default the API returns the IDs, URLs and names of the Boards. Use `Pinterex.my_suggested_boards/2` to get other fields.
 
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
 
   ## Parameters
   - id: the id of the Pin for which you wish to get the suggestions (required)
   """
-  defdelegate mySuggestedBoards(id), to: Pinterex.Api.User
+  defdelegate my_suggested_boards(id), to: Pinterex.Api.User
 
   @doc """
   Returns a list of Boards that Pinterest would suggest to the authenticated User if
   they were to save the specified Pin.
 
-  ## Reference 
+  ## Reference
 
   By default the API returns the IDs, URLs and names of the Boards.
 
@@ -113,20 +115,22 @@ defmodule Pinterex do
 
   ## Example
 
-  `Pinterex.mySuggestedBoards("1253434223", ["image", "counts"])`
+  `Pinterex.my_suggested_boards("1253434223", ["image", "counts"])`
+
+  `Pinterex.my_suggested_boards("1253434223", [fields: ["image", "counts"], limit: 5])`
   """
-  defdelegate mySuggestedBoards(id, options), to: Pinterex.Api.User
+  defdelegate my_suggested_boards(id, options), to: Pinterex.Api.User
 
   @doc """
   Returns a list of Pins that the authenticated User liked.
 
   ## Reference
 
-  By default the API returns the IDs, URLs, links and descriptions of the Pins. Use `Pinterex.myLikes/1` to get other fields.
+  By default the API returns the IDs, URLs, links and descriptions of the Pins. Use `Pinterex.my_likes/1` to get other fields.
 
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
-  defdelegate myLikes, to: Pinterex.Api.User
+  defdelegate my_likes, to: Pinterex.Api.User
 
   @doc """
   Returns a list of Pins that the authenticated User liked.
@@ -143,20 +147,22 @@ defmodule Pinterex do
 
   ## Example
 
-  `Pinterex.myLikes(["note", "counts"])`
+  `Pinterex.my_likes([fields: ["note", "counts"]])`
+
+  `Pinterex.my_likes([fields: ["note", "counts"], limit: 50])`
   """
-  defdelegate myLikes(options), to: Pinterex.Api.User
+  defdelegate my_likes(options), to: Pinterex.Api.User
 
   @doc """
   Returns a list of Pins that the authenticated User pinned.
 
   ## Reference
 
-  By default the API returns the IDs, URLs, links and descriptions of the User's Pins. Use `Pinterex.myPins/1` to get other fields.
+  By default the API returns the IDs, URLs, links and descriptions of the User's Pins. Use `Pinterex.my_pins/1` to get other fields.
 
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
-  defdelegate myPins, to: Pinterex.Api.User
+  defdelegate my_pins, to: Pinterex.Api.User
 
   @doc """
   Returns a list of Pins that the authenticated User pinned.
@@ -172,23 +178,25 @@ defmodule Pinterex do
   - options: if we wish to get other fields of the Pins we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.Pin`
 
   ## Example
-  `Pinterex.myPins(["note", "counts"])`
+  `Pinterex.my_pins([fields: ["note", "counts"]])`
+
+  `Pinterex.my_pins([fields: ["note", "counts"], limit: 50])`
   """
-  defdelegate myPins(options), to: Pinterex.Api.User
+  defdelegate my_pins(options), to: Pinterex.Api.User
 
   @doc """
   Returns a list of the authenticated User's Boards that match the search query.
 
   ## Reference
 
-  By default the API returns IDs, URLs and names of the matched Boards. Use `Pinterex.searchMyBoards/2` to get other fields.
+  By default the API returns IDs, URLs and names of the matched Boards. Use `Pinterex.search_my_boards/2` to get other fields.
 
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
 
   ## Parameters
   - query: the query string you wish to search for (required)
   """
-  defdelegate searchMyBoards(query), to: Pinterex.Api.User
+  defdelegate search_my_boards(query), to: Pinterex.Api.User
 
   @doc """
   Returns a list of the authenticated User's Boards that match the search query.
@@ -206,16 +214,18 @@ defmodule Pinterex do
 
   ## Example
 
-  `Pinterex.searchMyBoards("garden", ["image', "counts"])`
+  `Pinterex.search_my_boards("garden", [fields: ["image', "counts"]])`
+
+  `Pinterex.search_my_boards("garden", [fields: ["image', "counts"], limit: 50])`
   """
-  defdelegate searchMyBoards(query, options), to: Pinterex.Api.User
+  defdelegate search_my_boards(query, options), to: Pinterex.Api.User
 
   @doc """
   Returns a list of the authenticated User's Pins that match the search query.
 
   ## Reference
 
-  By default the API returns IDs, URLs, links and descriptions of the matched Pins. Use `Pinterex.searchMyPins/2` to get other fields.
+  By default the API returns IDs, URLs, links and descriptions of the matched Pins. Use `Pinterex.search_my_pins/2` to get other fields.
 
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
 
@@ -223,7 +233,7 @@ defmodule Pinterex do
   ## Parameters
   - query: the query string you wish to search for (required)
   """
-  defdelegate searchMyPins(query), to: Pinterex.Api.User
+  defdelegate search_my_pins(query), to: Pinterex.Api.User
 
   @doc """
   Returns a list of the authenticated User's Pins that match the search query.
@@ -241,20 +251,22 @@ defmodule Pinterex do
 
   ## Example
 
-  `Pinterex.searchMyPins("garden", ["note", "counts"])`
+  `Pinterex.search_my_pins("garden", [fields: ["note", "counts"]])`
+
+  `Pinterex.search_my_pins("garden", [fields: ["note", "counts"], limit: 50])`
   """
-  defdelegate searchMyPins(query, options), to: Pinterex.Api.User
+  defdelegate search_my_pins(query, options), to: Pinterex.Api.User
 
   @doc """
   Returns the Users that follow the authenticated User.
 
   ## Reference
 
-  By default the API returns the first names, last names, IDs and URLs of the Users. Use `Pinterex.myFollowers/1` to get other fields.
+  By default the API returns the first names, last names, IDs and URLs of the Users. Use `Pinterex.my_followers/1` to get other fields.
 
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
-  defdelegate myFollowers, to: Pinterex.Api.User
+  defdelegate my_followers, to: Pinterex.Api.User
 
   @doc """
   Returns the Users that follow the authenticated User.
@@ -269,20 +281,22 @@ defmodule Pinterex do
   - options: if we wish to get other fields of the Users we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.User`.
 
   ## Example
-  `Pinterex.myFollowers(["bio", "counts"])`
+  `Pinterex.my_followers([fields: ["bio", "counts"]])`
+
+  `Pinterex.my_followers([fields: ["bio", "counts"], limit: 50])`
   """
-  defdelegate myFollowers(options), to: Pinterex.Api.User
+  defdelegate my_followers(options), to: Pinterex.Api.User
 
   @doc """
   Returns a list of Boards that the authenticated User follows.
 
   ## Reference
 
-  By default the API returns the IDs, URLs and names of the Boards. Use `Pinterex.myFollowingBoards/1` to get other fields.
+  By default the API returns the IDs, URLs and names of the Boards. Use `Pinterex.my_following_boards/1` to get other fields.
 
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
-  defdelegate myFollowingBoards, to: Pinterex.Api.User
+  defdelegate my_following_boards, to: Pinterex.Api.User
 
   @doc """
   Returns a list of Boards that the authenticated User follows.
@@ -299,9 +313,11 @@ defmodule Pinterex do
 
   ## Example
 
-  `Pinterex.myFollowingBoards(["image", "counts"])`
+  `Pinterex.my_following_boards([fields: ["image", "counts"]])`
+
+  `Pinterex.my_following_boards([fields: ["image", "counts"], limit: 50])`
   """
-  defdelegate myFollowingBoards(options), to: Pinterex.Api.User
+  defdelegate my_following_boards(options), to: Pinterex.Api.User
 
   @doc """
   Follow the specified Board as the authenticated User.
@@ -315,7 +331,7 @@ defmodule Pinterex do
   - board: the Board to follow. The format of the parameters should be
   "username/board_name"
   """
-  defdelegate followBoard(board), to: Pinterex.Api.User
+  defdelegate follow_board(board), to: Pinterex.Api.User
 
   @doc """
   Unfollow the specified Board as the authenticated User.
@@ -329,7 +345,7 @@ defmodule Pinterex do
   - board: the Board to unfollow. The format of the parameters should be
   "username/board_name"
   """
-  defdelegate unfollowBoard(board), to: Pinterex.Api.User
+  defdelegate unfollow_board(board), to: Pinterex.Api.User
 
   @doc """
   Returns a list of Interests that the authenticated User follows.
@@ -340,18 +356,18 @@ defmodule Pinterex do
 
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
-  defdelegate myFollowingInterests, to: Pinterex.Api.User
+  defdelegate my_following_interests, to: Pinterex.Api.User
 
   @doc """
   Returns the Users that the authenticated User follows.
 
   ## Reference
 
-  By default the API returns the first names, last names, IDs and URLs of the Users. Use `Pinterex.myFollowingUsers/1` to get other fields.
+  By default the API returns the first names, last names, IDs and URLs of the Users. Use `Pinterex.my_following_users/1` to get other fields.
 
   [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
-  defdelegate myFollowingUsers, to: Pinterex.Api.User
+  defdelegate my_following_users, to: Pinterex.Api.User
 
   @doc """
   Returns the Users that the authenticated User follows.
@@ -367,16 +383,18 @@ defmodule Pinterex do
   - options: if we wish to get other fields of the Users we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.User`.
 
   ## Example
-  `Pinterex.myFollowingUsers(["bio", "counts"])`
+  `Pinterex.my_following_users([fields: ["bio", "counts"]])`
+
+  `Pinterex.my_following_users([fields: ["bio", "counts"], limit: 50])`
   """
-  defdelegate myFollowingUsers(options), to: Pinterex.Api.User
+  defdelegate my_following_users(options), to: Pinterex.Api.User
 
   @doc """
   Returns the information of the requested Pin.
 
   ## Reference
 
-  By default the API returns the ID, URL, link and the description of the Pin. Use `Pinterex.getPin/2` to get other fields.
+  By default the API returns the ID, URL, link and the description of the Pin. Use `Pinterex.get_pin/2` to get other fields.
 
   [https://developers.pinterest.com/docs/api/pins/](https://developers.pinterest.com/docs/api/pins/)
 
@@ -384,7 +402,7 @@ defmodule Pinterex do
 
   - id: the id of the Pin
   """
-  defdelegate getPin(id), to: Pinterex.Api.Pin
+  defdelegate get_pin(id), to: Pinterex.Api.Pin
 
   @doc """
   Returns the information of the requested Pin.
@@ -402,16 +420,16 @@ defmodule Pinterex do
 
   ## Example
 
-  `Pinterex.getPin("123456", ["note", "counts"])`
+  `Pinterex.get_pin("123456", [fields: ["note", "counts"]])`
   """
-  defdelegate getPin(id, options), to: Pinterex.Api.Pin
+  defdelegate get_pin(id, options), to: Pinterex.Api.Pin
 
   @doc """
   Returns the Board information.
 
   ## Reference
 
-  By default the API returns the ID, URL and the name of the specified Board. Use `Pinterex.getBoard/2` to get other fields.
+  By default the API returns the ID, URL and the name of the specified Board. Use `Pinterex.get_board/2` to get other fields.
 
   [https://developers.pinterest.com/docs/api/boards/](https://developers.pinterest.com/docs/api/boards/)
 
@@ -420,7 +438,7 @@ defmodule Pinterex do
   - board: the id of the Board whose info you wish to get. The format of the parameter should be
   "username/board_name" (required)
   """
-  defdelegate getBoard(board), to: Pinterex.Api.Board
+  defdelegate get_board(board), to: Pinterex.Api.Board
 
   @doc """
   Returns the Board information.
@@ -439,9 +457,9 @@ defmodule Pinterex do
 
   ## Example
 
-  `Pinterex.getBoard("username/board_name", ["image", "counts"])`
+  `Pinterex.get_board("username/board_name", [fields: ["image", "counts"]])`
   """
-  defdelegate getBoard(board, options), to: Pinterex.Api.Board
+  defdelegate get_board(board, options), to: Pinterex.Api.Board
 
   @doc """
   Delete the specified Pin for the authenticated User.
@@ -454,26 +472,14 @@ defmodule Pinterex do
 
   - pin: the id of the Pin you wish to delete (required)
   """
-  defdelegate deletePin(pin), to: Pinterex.Api.Pin
-
-  # @doc """
-  # Edit the specified Pin for the authenticated User.
-  # https://developers.pinterest.com/docs/api/v1/pins/<pin>
-
-  # ## Parameters
-  # - pin: the id of the Pin you wish to edit (required)
-  # - board: the Board you want to move the Pin to. The format of the parameters should be "username/board_name" (optional)
-  # - note: the new description (optional)
-  # - link: the new Pin link (optional)
-  # """
-  #defdelegate editPin(pin, board \\ nil, note \\ nil, link \\ nil), to: Pinterex.Api.Board
+  defdelegate delete_pin(pin), to: Pinterex.Api.Pin
 
   @doc """
   Returns a list of Pins from the specified Board.
 
   ## Reference
 
-  By default the API returns the IDs, URLs, links and descriptions of the Pins. Use `Pinterex.getBoardPins/2` to get other fields.
+  By default the API returns the IDs, URLs, links and descriptions of the Pins. Use `Pinterex.get_board_pins/2` to get other fields.
 
   [https://developers.pinterest.com/docs/api/boards/](https://developers.pinterest.com/docs/api/boards/)
 
@@ -482,7 +488,7 @@ defmodule Pinterex do
   - board: the id of the Board whose pins you wish to get. The format of the parameters should be
   "username/board_name" (required)
   """
-  defdelegate getBoardPins(board), to: Pinterex.Api.Board
+  defdelegate get_board_pins(board), to: Pinterex.Api.Board
 
   @doc """
   Returns a list of Pins from the specified Board.
@@ -501,9 +507,11 @@ defmodule Pinterex do
 
   ## Example
 
-  `Pinterex.getBoardPins("username/board_name", ["note", "counts'])`
+  `Pinterex.get_board_pins("username/board_name", [fields: ["note", "counts']])`
+
+  `Pinterex.get_board_pins("username/board_name", [fields: ["note", "counts'], limit: 50])`
   """
-  defdelegate getBoardPins(board, options), to: Pinterex.Api.Board
+  defdelegate get_board_pins(board, options), to: Pinterex.Api.Board
 
   @doc """
   Creates a Board with the specified name for the authenticated User.
@@ -519,7 +527,7 @@ defmodule Pinterex do
   - name: the name of the Board you wish to create (required)
   - description: the description of the Board you wish to create (optional)
   """
-  defdelegate createBoard(name, description \\ nil), to: Pinterex.Api.Board
+  defdelegate create_board(name, description \\ nil), to: Pinterex.Api.Board
 
   @doc """
   Deletes the specified Board for the authenticated User.
@@ -533,7 +541,7 @@ defmodule Pinterex do
   - board: The board you want to delete. The format of the parameters should be "username/board_name"
   (required)
   """
-  defdelegate deleteBoard(board), to: Pinterex.Api.Board
+  defdelegate delete_board(board), to: Pinterex.Api.Board
 
   @doc """
   Edit the specified Board for the authenticated User.
@@ -548,8 +556,13 @@ defmodule Pinterex do
 
   - board: the id of the Board you wish to edit. The format of the parameters should be
   "username/board_name" (required)
-  - name: the new name of the Board (optional)
-  - description: the new description of the Board (optional)
+  - options: you can specify a new name and / or a new descriptions.
+
+  ## Example
+
+  `Pinterex.edit_board("username/board_name", [name: "New name"])`
+
+  `Pinterex.edit_board("username/board_name", [name: "New name", description: "New description"])`
   """
-  defdelegate editBoard(board, name \\ nil, description \\ nil), to: Pinterex.Api.Board
+  defdelegate edit_board(board, options), to: Pinterex.Api.Board
 end
