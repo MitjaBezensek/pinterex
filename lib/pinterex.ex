@@ -239,31 +239,73 @@ defmodule Pinterex do
   - options: if we wish to get other fields of the Pins we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.Pin`
 
   ## Example
-  
+
   `Pinterex.searchMyPins("garden", ["note", "counts"])`
   """
   defdelegate searchMyPins(query, options), to: Pinterex.Api.User
 
   @doc """
-  Returns the Users that follow the authenticated User
-  https://developers.pinterest.com/docs/api/v1/me/followers/
+  Returns the Users that follow the authenticated User.
 
-  By default the API returns the first names, last names, IDs and URLs of the Users.
+  ## Reference
+
+  By default the API returns the first names, last names, IDs and URLs of the Users. Use `Pinterex.myFollowers/1` to get other fields.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
   defdelegate myFollowers, to: Pinterex.Api.User
 
   @doc """
-  Returns a list of Boards that the authenticated User follows.
-  https://developers.pinterest.com/docs/api/v1/me/following/boards/
+  Returns the Users that follow the authenticated User.
 
-  By default the API returns the IDs, URLs and names of the Boards.
+  ## Reference
+
+  By default the API returns the first names, last names, IDs and URLs of the Users.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
+
+  ## Parameters
+  - options: if we wish to get other fields of the Users we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.User`.
+
+  ## Example
+  `Pinterex.myFollowers(["bio", "counts"])`
+  """
+  defdelegate myFollowers(options), to: Pinterex.Api.User
+
+  @doc """
+  Returns a list of Boards that the authenticated User follows.
+
+  ## Reference
+
+  By default the API returns the IDs, URLs and names of the Boards. Use `Pinterex.myFollowingBoards/1` to get other fields.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   """
   defdelegate myFollowingBoards, to: Pinterex.Api.User
 
   @doc """
-  Follow the specified Board as the authenticated User.
-  https://developers.pinterest.com/docs/api/v1/me/following/boards/
+  Returns a list of Boards that the authenticated User follows.
 
+  ## Reference
+
+  By default the API returns the IDs, URLs and names of the Boards.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
+
+  ## Parameters
+
+  - options: if we wish to get other fields of the Boards we pass a list of fields to fetch. To see which fields are available look at `Pinterex.Structs.Board`.
+
+  ## Example
+
+  `Pinterex.myFollowingBoards(["image", "counts"])`
+  """
+  defdelegate myFollowingBoards(options), to: Pinterex.Api.User
+
+  @doc """
+  Follow the specified Board as the authenticated User.
+
+  [https://developers.pinterest.com/docs/api/users/](https://developers.pinterest.com/docs/api/users/)
   ## Parameters
   - board: the Board to follow. The format of the parameters should be
   "username/board_name"

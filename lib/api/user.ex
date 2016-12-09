@@ -40,13 +40,13 @@ defmodule Pinterex.Api.User do
     |> Helpers.createPins
   end
 
-  def myFollowers do
-    Pinterex.execute_request(:get, "/me/followers/")
+  def myFollowers(options \\ []) do
+    Pinterex.execute_request(:get, "/me/followers/", options)
     |> Helpers.createUsers
   end
 
-  def myFollowingBoards do
-    Pinterex.execute_request(:get, "/me/following/boards/")
+  def myFollowingBoards(options \\ []) do
+    Pinterex.execute_request(:get, "/me/following/boards/", options)
     |> Helpers.createBoards
   end
 
