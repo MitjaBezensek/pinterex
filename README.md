@@ -4,7 +4,7 @@ Pinterex is a simple api wrapper for the Pinterest API.
 
 ## Documentation
 
-Documentation can be found at [Hexdocs](https://hexdocs.pm/pinterex/api-reference.html).
+Documentation can be found at [hexdocs](https://hexdocs.pm/pinterex/api-reference.html).
 
 ## Installation and Configuration
 
