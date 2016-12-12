@@ -51,4 +51,4 @@ Note that you do not need to specify the fields and limit in the second call. Th
 
 ## Influence
   
-The design of the API was influence by [ExTwitter](https://github.com/parroty/extwitter).
+The design of the API was influenced by [ExTwitter](https://github.com/parroty/extwitter).
