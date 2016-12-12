@@ -33,7 +33,7 @@ Like mentioned before, Pinterex returns structs that correspond to the data retu
 Pinterex.me([fields: ["bio", "counts", "username"]])
 ```
 
-For request that return multiple items you can limit the number of returned results. The default limit is 25, and the max allowed limit is 100.
+For requests that return multiple items you can limit the number of returned results. The default limit is 25, and the max allowed limit is 100.
 
 ```elixir
 Pinterex.my_boards([fields: ["name", "counts", "description"], limit: 10])
@@ -47,7 +47,7 @@ This returns a [`PagedBoards`](https://github.com/MitjaBezensek/pinterex/blob/ma
 boards = first_10.boards ++ second_20.boards
 ```
 
-Note that you do not need to specify the fields and limit in the second call. The `next` url already contains the information from the previous call. When the `next` field equals `nil` it means that there are not items left to fetch.
+Note that you do not need to specify the fields and limit in the second call. The `next` url already contains the information from the previous call. When the `next` field equals `nil` it means that there are no items left to fetch.
 
 ## Influence
   
