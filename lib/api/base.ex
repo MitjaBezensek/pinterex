@@ -107,7 +107,7 @@ defmodule Pinterex.Api.Base do
     |> handle_response(create_struct)
   end
 
-  defp get_fields(path, options) do
+  def get_fields(path, options) do
     start =
       if(String.contains? path, "?") do
         "&"
