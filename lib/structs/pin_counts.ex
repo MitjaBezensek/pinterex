@@ -1,7 +1,7 @@
 defmodule Pinterex.Structs.PinCounts do
   @moduledoc false
 
-  defstruct comments: nil, likes: nil, repins: nil
+  defstruct comments: nil, saves: nil
 
   use ExConstructor
 end
